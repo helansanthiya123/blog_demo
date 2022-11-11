@@ -13,7 +13,7 @@
                         </li>
                     @else
                         <li class="nav-item">
-                        <a class="nav-link" href="#">Home Page</a>
+                        <a class="nav-link" href="{{url('admin/admin_master')}}">admin</a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="#">View Blogs</a>

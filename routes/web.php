@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('home',['name' => 'Helan santhiya']);
 });
 
+Route::get('/admin/admin_master',function(){
+    return view('admin.admin_master');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
