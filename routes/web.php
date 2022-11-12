@@ -18,7 +18,11 @@ Route::get('/', function () {
 });
 
 Route::get('/admin/admin_master',function(){
-    return view('admin.admin_master');
+    return view('admin.index');
+});
+
+Route::get('/admin/add_blog',function(){
+    return view('admin.add_blog');
 });
 
 Route::middleware([
