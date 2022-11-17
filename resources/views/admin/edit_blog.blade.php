@@ -1,7 +1,7 @@
 @extends('admin.admin_master')
 
 @section('title')
-Add Blog
+Edit Blog
 @endsection
 
 @section('add-blog')
@@ -11,30 +11,26 @@ Add Blog
     <div class="row g-4">
         <div class="col-sm-12 col-xl-12 w-75">
         @if(Session::has('save_success'))
-            <div class="alert alert-success alert-dismissible">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                {{Session::get('save_success')}}
-            </div>
-        @elseif(Session::has('update'))
-            <div class="alert alert-success alert-dismissible">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                {{Session::get('update')}}
-            </div>
-        @endif
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        {{Session::get('save_success')}}
+    </div>
+@endif
                         <div class="bg-light rounded h-100 p-4">
                             <h6 class="mb-4">Basic Form</h6>
-                            <form action="{{url('add-blog')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{url('update-blog')}}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            <input type="hidden" name="id" value="{{$edit_blog->id}}">
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Title</label>
                                     <input type="text" name="title" id="title" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp" required oninvalid="this.setCustomValidity('Please fill out Title')" oninput="this.setCustomValidity('')" >
+                                        aria-describedby="emailHelp" required oninvalid="this.setCustomValidity('Please fill out Title')" oninput="this.setCustomValidity('')" value="{{$edit_blog->title}}">
                                     
                                 </div>
                                 <div class="mb-3" >
                                     <label for="exampleInputEmail1" class="form-label">Title</label>
-                                    <textarea name="description" id="description" required oninvalid="this.setCustomValidity('Please fill out Description')" oninput="this.setCustomValidity('')">
-                                        
+                                    <textarea name="description" id="description" required oninvalid="this.setCustomValidity('Please fill out Description')" oninput="this.setCustomValidity('')" >
+                                    {{$edit_blog->description}}
                                     </textarea>
                                     
                                 </div>
@@ -45,8 +41,8 @@ Add Blog
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Topic</label>
-                                    <select type="text" name="topic" class="form-control" id="topic" required oninvalid="this.setCustomValidity('Please fill out Topic')" oninput="this.setCustomValidity('')">
-                                        <option selected value="">Choose Topic</option>
+                                    <select type="text" name="topic" class="form-control" id="topic" required oninvalid="this.setCustomValidity('Please fill out Topic')" oninput="this.setCustomValidity('')" >
+                                        <option selected value="{{$edit_blog->topic}}">{{$edit_blog->topic}}</option>
                                         <option value="Finance">Finance</option>
                                         <option value="Business">Business</option>
                                         <option value="Marketing">Marketing</option>
@@ -55,10 +51,7 @@ Add Blog
                                         <option value="Technology">Technology</option>
                                     </select>
                                 </div>
-                                <div class="mb-3 form-check">
-                                    <input type="checkbox" name="publish_status" class="form-check-input" id="exampleCheck1" value="1" required oninvalid="this.setCustomValidity('Please check out the publish state')" oninput="this.setCustomValidity('')">
-                                    <label class="form-check-label" for="exampleCheck1">Publish</label>
-                                </div>
+                               
                                 <button type="submit" class="btn btn-primary">Sign in</button>
                             </form>
                         </div>

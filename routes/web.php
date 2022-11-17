@@ -24,9 +24,13 @@ Route::get('/admin/admin_master',function(){
 Route::get('/admin/add_blog',function(){
     return view('admin.add_blog');
 });
+Route::view('/admin/manage_blog','admin.manage_blog');
 
 Route::get('/',[AddBlog::class,'show']);
 Route::post('add-blog',[AddBlog::class,'save']);
+Route::get('blog-delete/{id}',[AddBlog::class,'delete']);
+Route::get('blog-edit/{id}',[AddBlog::class,'edit']);
+Route::post('update-blog',[AddBlog::class,'update']);
 
 
 Route::middleware([

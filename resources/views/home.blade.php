@@ -11,7 +11,7 @@
     <div class="container mt-5 ">
         
         <div class="row ">
-        @foreach($details as $rec)
+        @foreach($tax as $rec)
             <div class="col-md-6 mt-3">
                 <div class="card">
                   <div class="row card-body">
@@ -20,7 +20,7 @@
                         <h3 class="text-info">{{$rec->title}}</h3>             
                         <p class="card-text">
                         <!-- <a href="#">Continue reading</a> -->
-                        {{$rec->description}}
+                        {{$rec->description}} 
                         </p>
                         <strong >{{$rec->topic}}</strong>
                         </div>
@@ -29,21 +29,7 @@
                 </div>
             </div>
             @endforeach
-            
-            <!-- <div class="col-md-6">
-                <div class="card">
-                  <div class="row card-body">
-                    <div class="col-sm-6 text-start text-capitalize">
-                       <strong class="text-info">test</strong>
-                        <h3>Featured Post</h3>             
-                        <p class="card-text">
-                        <a href="#">Continue reading</a>
-                        </p>
-                        </div>
-                        <img class="col-sm-6" src="{{asset('images/tree-736885__480.jpg')}}" alt="sans" height="230"/>
-                    </div>
-                </div>
-            </div> -->
+           
         </div>
     </div>
                 

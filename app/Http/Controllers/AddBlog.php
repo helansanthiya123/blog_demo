@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Session;
 
 class AddBlog extends Controller
 {
+    public function show()
+    {
+         $details=Add_Blog::get();
+        return view('home')->with(compact('details'));
+    }
     public function save(Request $request)
     {
         $addblog = new Add_blog;
@@ -32,10 +37,33 @@ class AddBlog extends Controller
         // return dd(strip_tags($request->description));
     }
 
-    public function show()
+    public function edit($id)
     {
-         $details=Add_Blog::get();
-        return view('home')->with(compact('details'));
+        $edit_blog=Add_blog::find($id);
+        return view('admin.edit_blog',compact('edit_blog'));
+    }    
+    public function update(Request $request)
+    {
+        $update_blog=Add_blog::find($request->id);
+        $update_blog->title=$request->title;
+        $update_blog->description=strip_tags($request->description);
+        $update_blog->image_path=$request->image->getClientOriginalName();
+        $request->file('image')->move(public_path('images/'),$request->image->getClientOriginalName());
+        $update_blog->topic=$request->topic;
+
+        $update_blog->save();
+        Session::flash('update','Updated successfully');
+        return redirect("admin/add_blog");
+        // return view('admin.add_blog');
+    }
+
+    public function delete($id)
+    {
+        $delete_blog=Add_blog::find($id);
+        $delete_blog->delete();
+
+        Session::flash('delete','Blog deleted');
+        return back();
     }
    
 }
